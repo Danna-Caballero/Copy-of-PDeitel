@@ -6,10 +6,11 @@ class Card:
              '7', '8', '9', '10', 'Jack', 'Queen', 'King']
     SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
 
-    def __init__(self, face, suit):
-        """Initialize a Card with a face and suit."""
-        self._face = face
-        self._suit = suit
+    def __init__(self, face = None, suit = None):
+        self.face = face
+        self.suit = suit
+        self.DECK = []
+        self.IMAGES_PATH = []
 
     @property
     def face(self):
@@ -37,6 +38,22 @@ class Card:
     def __format__(self, format):
         """Return formatted string representation."""
         return f'{str(self):{format}}'
+        
+    def generate_random_card(self):
+        face = random.choice(Card.FACES)
+        suit = random.choice(Card.SUITS)
+        return Card(face, suit)
+
+  def deck_of_cards(self, amount_of_cards):
+      for k in range(amount_of_cards):
+          card = self.generate_random_card()
+          self.DECK.append(f"{card.face}_of_{card.suit}")
+      return self.DECK
+
+  def iterador(self):
+      for card in self.DECK:
+          yield card
+    
 
 
 
