@@ -1,6 +1,9 @@
 # card.py
 """Card class that represents a playing card and its image file name."""
 
+import random
+import os
+
 class Card:
     FACES = ['ace', '2', '3', '4', '5', '6',
              '7', '8', '9', '10', 'jack', 'queen', 'king']
@@ -42,17 +45,22 @@ class Card:
     def generate_random_card(self):
         face = random.choice(Card.FACES)
         suit = random.choice(Card.SUITS)
-        return Card(face, suit)
+        return Card(face, suit) 
+        
+    def deck_of_cards(self, amount_of_cards):
+        for k in range(amount_of_cards):
+            card = self.generate_random_card()
+            self.DECK.append(f"{card.face}_of_{card.suit}")
+        return self.DECK
+        
+    def iterador(self):
+        for card in self.DECK:
+            yield card
 
-  def deck_of_cards(self, amount_of_cards):
-      for k in range(amount_of_cards):
-          card = self.generate_random_card()
-          self.DECK.append(f"{card.face}_of_{card.suit}")
-      return self.DECK
 
-  def iterador(self):
-      for card in self.DECK:
-          yield card
+
+
+  
     
 
 
